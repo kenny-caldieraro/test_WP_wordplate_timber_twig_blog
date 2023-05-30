@@ -103,3 +103,12 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css');
     wp_enqueue_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js', ['jquery'], null, true);
 });
+
+// Add menu
+add_filter('timber/context', 'add_to_context');
+
+function add_to_context($context)
+{
+    $context['categories'] = new Timber\Menu('header');
+    return $context;
+}
