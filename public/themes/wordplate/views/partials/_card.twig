@@ -1,0 +1,22 @@
+{% set content =  post.preview.length(25).read_more(false).end(' (...)') %}
+{% set imageWidth = prev ? '150px' : 'auto' %}
+{% set cardWidth = prev ? '18rem' : '70%' %}
+
+<div class="p-2 d-flex justify-content-center">
+	<div class="card" style="width: {{cardWidth}};">
+		<img src="{{post.thumbnail.src}}" class="img-fluid" alt="{{post.title}}" style="height: {{imageWidth}}; width: 100%;">
+		<div class="card-body">
+			<h5 class="card-title">{{post.title | raw}}</h5>
+			<p class="card-text">
+				{% if prev == true %}
+					{{content | raw }}
+				{% else %}
+					{{post.content | raw }}
+				{% endif %}
+			</p>
+			{% if prev == true %}
+				<a href="{{post.link}}" class="btn btn-primary">Lire la suite</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
