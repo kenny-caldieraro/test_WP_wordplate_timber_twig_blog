@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+	<div class="d-flex flex-row flex-wrap justify-content-between">
+
+		{% if posts | length <= 0 %}
+
+			<p>Il n'y a pas de résultat pour votre recherche :
+				{{search}}</p>
+
+		{% else %}
+
+			{% for post in posts %}
+
+				{% include "./partials/_card.twig" with { post, prev: true } %}
+
+			{% endfor %}
+
+		{% endif %}
+
+
+	</div>
+
+{% endblock %}
